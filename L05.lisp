@@ -11,3 +11,8 @@
 		     (push (car lst) mylst)
 		     (rev (cdr x))))))
       (rev lst))))
+
+(defun my-reverse (lst)
+  (if (equal nil lst)
+      nil
+      (cons (car lst) (my-reverse (cdr lst)))))
