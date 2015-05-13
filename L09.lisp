@@ -46,7 +46,7 @@
   (let* ((tmp (car x)))
     (pack-helper x tmp)))
 	 
-;; (A A A A (B) B (C) C C (A) A A (D) D (E) E E E)
+
 (defun pack-helper (y acc)
       (cond
 	((equal (cdr y) nil)
@@ -54,6 +54,8 @@
 	((equal acc (car y))
 	 (cons (car y) (pack-helper (cdr y) acc)))
 	(t
-	 (cons (cons (car y) nil) (pack-helper y (car y))))))
-	 ;(cons (cons (car y) nil) (pack-helper y (cadr y))))))
+	 ;; (A A A A (B) B (C) C C (A) A A (D) D (E) E E E)
+	 ;(cons (cons (car y) nil) (pack-helper y (car y))))))
+	 ;; (A A A A (B) (C) C (A) A (D) (E) E E)
+	 (cons (cons (car y) nil) (pack-helper (cdr y) (car y))))))
 
