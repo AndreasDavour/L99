@@ -48,14 +48,18 @@
 	 
 
 (defun pack-helper (y acc)
-      (cond
-	((equal (cdr y) nil)
-	 nil)
-	((equal acc (car y))
-	 (cons (car y) (pack-helper (cdr y) acc)))
-	(t
-	 ;; (A A A A (B) B (C) C C (A) A A (D) D (E) E E E)
-	 ;(cons (cons (car y) nil) (pack-helper y (car y))))))
-	 ;; (A A A A (B) (C) C (A) A (D) (E) E E)
-	 (cons (cons (car y) nil) (pack-helper (cdr y) (car y))))))
+  (cond
+    ;; if end of list, cdr is nil
+    ((equal (cdr y) nil)
+     nil)
+    ;; last car and present car is the same
+    ((equal acc (car y))
+     (cons (car y) (pack-helper (cdr y) acc)))
+    (t
+     ;; (A A A A (B) B (C) C C (A) A A (D) D (E) E E E)
+     ;; (cons (cons (car y) nil) (pack-helper y (car y))))))
+     ;; (A A A A (B) (C) C (A) A (D) (E) E E)
+     ;;
+     ;; last car and present car is not the same
+     (cons (cons (car y) nil) (pack-helper (cdr y) (car y))))))
 
