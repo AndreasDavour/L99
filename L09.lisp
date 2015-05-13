@@ -1,6 +1,5 @@
 ;;;; L09 - Pack consecutive duplicates of list elements into sublists.
 
-<<<<<<< HEAD
 ;;; If a list contains repeated elements they should be placed in separate sublists.
 ;;; 
 ;;; Example:
@@ -58,5 +57,3 @@
 	 (cons (cons (car y) nil) (pack-helper y (car y))))))
 	 ;(cons (cons (car y) nil) (pack-helper y (cadr y))))))
 
-=======
->>>>>>> 0e4f9e6b675829842690f36e5972420c4f4efd5b
