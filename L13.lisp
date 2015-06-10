@@ -26,6 +26,24 @@
 ;; 	  (push var acc)))
 ;;     (nreverse acc)))
 
+(defun my-remove-duplicates (lst)
+  (let ((acc nil))
+;	(tmp nil))
+;   (labels ((dup-helper ()
+
+  (cond
+    ((null lst)
+     nil)
+    ((not (eql (car lst) (cadr lst)))
+;;     (format t "eql: ~A~%" (car lst)))
+     (push (car lst) acc)
+     (my-remove-duplicates (cdr lst)))
+    (t
+;;     (format t "t: ~A~%" (car lst))
+     (my-remove-duplicates (cdr lst))
+     ))
+    (print acc)))
+
 (defun encode-direct (lst)
   (let ((tmp (remove-duplicates lst))
 	(acc nil))
