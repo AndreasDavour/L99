@@ -27,25 +27,33 @@
 ;;     (nreverse acc)))
 
 (defun my-remove-duplicates (lst)
-  (let ((acc nil))
-;	(tmp nil))
-;   (labels ((dup-helper ()
-
-  (cond
-    ((null lst)
-     nil)
-    ((not (eql (car lst) (cadr lst)))
-;;     (format t "eql: ~A~%" (car lst)))
-     (push (car lst) acc)
-     (my-remove-duplicates (cdr lst)))
-    (t
-;;     (format t "t: ~A~%" (car lst))
-     (my-remove-duplicates (cdr lst))
-     ))
-    (print acc)))
+  "Helper function to get all uniqe values in order."
+  (labels ((dup-helper (x acc)
+	     (cond
+	       ;; end of list
+	       ((null x)
+		(nreverse acc))
+	       ;; new value
+	       ((not (eql (car x) (cadr x)))
+		(push (car x) acc)
+		(dup-helper (cdr x) acc))
+	       ;; same old, let's move along
+	       (t
+		(dup-helper (cdr x) acc)
+		))))
+      (dup-helper lst nil)))
 
 (defun encode-direct (lst)
   (let ((tmp (remove-duplicates lst))
+	(acc nil))
+    (dolist (var tmp)
+      (if (> (length (intersection lst (list var nil))) 1)
+	  (push (list (length (intersection lst (list var nil))) var) acc)
+	  (push var acc)))
+    (nreverse acc)))
+
+(defun encode-direct (lst)
+  (let ((tmp (my-remove-duplicates lst))
 	(acc nil))
     (dolist (var tmp)
       (if (> (length (intersection lst (list var nil))) 1)
