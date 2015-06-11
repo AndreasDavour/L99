@@ -52,12 +52,20 @@
 	  (push var acc)))
     (nreverse acc)))
 
+;; the problem with this is INTERSECTION takes the whole list and
+;; will thus find all the A, and not just the first set.
 (defun encode-direct (lst)
   (let ((tmp (my-remove-duplicates lst))
 	(acc nil))
-    (dolist (var tmp)
-      (if (> (length (intersection lst (list var nil))) 1)
-	  (push (list (length (intersection lst (list var nil))) var) acc)
-	  (push var acc)))
+    (dolist (var lst)
+  (format t "apa: ~A~%" (intersection lst (list var nil))))
+;;      (if (> (length (intersection lst (list var nil))) 1)
+;;	  (push (list (length (intersection lst (list var nil))) var) acc)
+;;	  (push var acc)))
     (nreverse acc)))
 
+;; find the count of each atom
+;; same problem as above, though.
+(loop for i in '(a c b e)
+      for p = (count i '(a a a a c c c b e e e))
+      do (print p))
