@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 ;;;; L18 - Extract a slice from a list.
 
 ;;; Given two indices, I and K, the slice is the list containing the
