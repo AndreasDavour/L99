@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 ;;;; L18 - Extract a slice from a list.
 
 ;;; Given two indices, I and K, the slice is the list containing the
@@ -14,4 +15,9 @@
     collect (nth p lst)))
 
 ;;;; (slice '(a b c d e f g h i k) 3 7)
+
+;; cheating and using SUBSEQ
+(defun slice (lst start end)
+  (subseq lst (- start 1) end))
+
 
